@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 import bcrypt
+import re
 
 
 class usersManger(models.Manager):
@@ -13,11 +14,14 @@ class usersManger(models.Manager):
         if len(post_data['password']) < 8:
             errors["password"] = "Password should be at least 8 characters"
         if post_data['password'] != post_data['confirm_pw']:
-            errors["confirm_pw"] = "No match password "
+            errors["confirm_pw"] = "Password doesn't match"
+        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+        if not EMAIL_REGEX.match(post_data['emailaddress']):    # test whether a field matches the pattern            
+            errors['emailaddress'] = "Invalid email address!"
         if gymUsers.objects.filter(email=post_data['emailaddress']).exists():
-            errors["emailaddress"] = "Email Already existsed !!!"
+            errors["emailaddress"] = "Email address is already registered!"
         if gymUsers.objects.filter(regNum=post_data['registration']).exists():
-            errors["regNumExisted"] = "Registraion Number Already existsed !!!"
+            errors["registration"] = "Registration number already exists!"
         return errors
 
     def basic_informatiom_validator(self, postData):
@@ -38,11 +42,11 @@ class gymUsers(models.Model):
     address = models.CharField(max_length=45, null=True)
     email = models.CharField(max_length=25, null=False)
     phone = models.IntegerField()
-    regNum = models.IntegerField(null=False)
+    regNum = models.CharField(max_length=45,null=False)
     amount = models.IntegerField()
     password = models.CharField(max_length=45, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     objects = usersManger()
 
@@ -69,7 +73,7 @@ class participants(models.Model):
         participants.objects.create(participantName=participantName,sex=sex,age=age,email=email,legalNumber=legalNumber,phoneNumber=phoneNumber,midicalHistory=midicalHistory,gym_user=obj_id)
 
 
-class subScriptions(models.Model):
+class Subscription(models.Model):
     gymUser = models.ForeignKey(gymUsers, related_name='gymUser_sub_id', on_delete=models.CASCADE)
     participantUser = models.ForeignKey(participants, related_name='participantUser_id', on_delete=models.CASCADE)
     amount = models.IntegerField()
@@ -77,9 +81,19 @@ class subScriptions(models.Model):
     _to = models.DateTimeField(auto_now=True)
     active = models.IntegerField(default=0, null=False)
 
-    def add_subScriptions(request):
+    def add_subscription(request):
         pass
 
+class Employee(models.Model):
+    name = models.CharField(max_length=45)
+    employment_id = models.CharField(max_length=45)
+    title=models.CharField(max_length=255)
+    gym=models.ForeignKey(gymUsers,related_name="employees",on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def add_employee(request):
+        pass
 
 def Register(request):
     name = request.POST['clubname']
