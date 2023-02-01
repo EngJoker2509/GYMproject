@@ -22,13 +22,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'GYMapp:base' %}">About</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'GYMapp:about' %}">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'GYMapp:base' %}">Pricing</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'GYMapp:price' %}">Pricing</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'GYMapp:contact' %}">Contact</a>
                     </li>
                 </ul>
                 <div class="d-flex">
@@ -77,79 +77,82 @@
                                     <!-- 2 column grid layout with text inputs for the first and last names -->
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
-                                            <div class="form-outline text-start">
-                                                <input type="text" id="form3Example1" class="form-control"
-                                                    name="clubname" />
-                                                <label class="form-label" for="form3Example1">Club Name</label>
-                                            </div>
                                             {% for message in messages %}
                                             {% if message.extra_tags == "clubname" %}
                                             <p class="error-message">{{ message }} </p>
                                             {% endif %}
                                             {% endfor %}
+                                            <div class="form-outline text-start">
+                                                <input type="text" id="form3Example1" class="form-control"
+                                                    name="clubname" />
+                                                <label class="form-label" for="form3Example1">Club Name</label>
+                                            </div>
                                         </div>
+                                        
                                         <div class="col-md-6 mb-4">
+                                            {% for message in messages %}
+                                            {% if message.extra_tags == "registration" %}
+                                            <p class="error-message">{{ message }} </p>
+                                            {% endif %}
+                                            {% endfor %}
                                             <div class="form-outline text-start">
                                                 <input type="text" id="form3Example2" class="form-control"
                                                     name="registration" />
                                                 <label class="form-label" for="form3Example2">Registration No.</label>
                                             </div>
                                         </div>
-                                        {% for message in messages %}
-                                        {% if message.extra_tags == "registration" %}
-                                        <p class="error-message">{{ message }} </p>
-                                        {% endif %}
-                                        {% endfor %}
                                     </div>
 
                                     <!-- Email input -->
                                     <div class="form-outline mb-4 text-start">
+                                        {% for message in messages %}
+                                        {% if message.extra_tags == "emailaddress" %}
+                                        <p class="error-message">{{ message }}</p>
+                                        {% endif %}
+                                        {% endfor %}
                                         <input type="email" id="form3Example3" class="form-control"
                                             name="emailaddress" />
                                         <label class="form-label" for="form3Example3">Email address</label>
                                     </div>
-                                    {% for message in messages %}
-                                    {% if message.extra_tags == "email" %}
-                                    <p class="error-message">{{ message }}</p>
-                                    {% endif %}
-                                    {% endfor %}
-
                                     <!-- PHone Number input -->
                                     <div class="form-outline mb-4 text-start">
+                                        {% for message in messages %}
+                                        {% if message.extra_tags == "phonenumber" %}
+                                        <p class="error-message">{{ message }} </p>
+                                        {% endif %}
+                                        {% endfor %}
                                         <input type="number" id="form3Example4" class="form-control"
                                             name="phonenumber" />
                                         <label class="form-label" for="form3Example4">Phone Number</label>
                                     </div>
-                                    {% for message in messages %}
-                                    {% if message.extra_tags == "phonenumber" %}
-                                    <p class="error-message">{{ message }} </p>
-                                    {% endif %}
-                                    {% endfor %}
-
                                     <!-- Address input -->
                                     <div class="form-outline mb-4 text-start">
+                                        {% for message in messages %}
+                                        {% if message.extra_tags == "city" %}
+                                        <p class="error-message">{{ message }} </p>
+                                        {% endif %}
+                                        {% endfor %}
                                         <input type="text" id="form3Example5" class="form-control" name="city" />
                                         <label class="form-label" for="form3Example5">City</label>
                                     </div>
-                                    {% for message in messages %}
-                                    {% if message.extra_tags == "city" %}
-                                    <p class="error-message">{{ message }} </p>
-                                    {% endif %}
-                                    {% endfor %}
-
+                                    
                                     <!-- Amount input -->
                                     <div class="form-outline mb-4 text-start">
+                                        {% for message in messages %}
+                                        {% if message.extra_tags == "amount" %}
+                                        <p class="error-message">{{ message }} </p>
+                                        {% endif %}
+                                        {% endfor %}
                                         <input type="text" id="form3Example5" class="form-control" name="amount" />
                                         <label class="form-label" for="form3Example5">Amount</label>
                                     </div>
-                                    {% for message in messages %}
-                                    {% if message.extra_tags == "amount" %}
-                                    <p class="error-message">{{ message }} </p>
-                                    {% endif %}
-                                    {% endfor %}
-
                                     <!-- Password input -->
                                     <div class="form-outline mb-4 text-start">
+                                        {% for message in messages %}
+                                        {% if message.extra_tags == "password" %}
+                                        <p class="error-message">{{ message }} </p>
+                                        {% endif %}
+                                        {% endfor %}
                                         <input type="password" id="form3Example4" class="form-control"
                                             name="password" />
                                         <label class="form-label" for="form3Example4">Password</label>
@@ -161,12 +164,6 @@
                                             name="confirm_pw" />
                                         <label class="form-label" for="form3Example5">Confirm Password</label>
                                     </div>
-                                    {% for message in messages %}
-                                    {% if message.extra_tags == "password" %}
-                                    <p class="error-message">{{ message }} </p>
-                                    {% endif %}
-                                    {% endfor %}
-
                                     <!-- Submit button -->
                                     <button type="submit" class="btn btn-light btn-block mb-4">
                                         Sign up
