@@ -18,7 +18,7 @@ def register(request):
         if len(errors) > 0 :
             for key, value in errors.items():
                 print(key,value)
-                messages.error(request, value)
+                messages.error(request, value,extra_tags=key)
             return redirect('/')
         Register(request)
     return redirect('/login')
