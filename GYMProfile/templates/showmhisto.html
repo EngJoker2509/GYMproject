@@ -1,0 +1,59 @@
+{%extends 'C:\Users\ahmad\GYMproject\GYMProfile\templates\profile.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+      .header {
+        background-color: #f2f2f2;
+        padding: 1rem;
+        text-align: center;
+      }
+      .history-container {
+        padding: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Participant Medical History</h1>
+    </div>
+    <div class="container history-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Illness/Injury</th>
+            <th>Description</th>
+            <th>Treatment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>01/01/2021</td>
+            <td>Flu</td>
+            <td>Participant reported flu symptoms such as fever, cough, and fatigue</td>
+            <td>Prescribed medication and advised to rest</td>
+          </tr>
+          <tr>
+            <td>05/02/2021</td>
+            <td>Sprained Ankle</td>
+            <td>Participant reported spraining their ankle while playing basketball</td>
+            <td>Prescribed pain medication and advised to rest and apply ice</td>
+          </tr>
+          <tr>
+            <td>10/03/2021</td>
+            <td>Allergy</td>
+            <td>Participant reported having allergic reactions to certain foods</td>
+            <td>Advised to avoid certain foods and prescribed antihistamines</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+
+{%endblock content%}
