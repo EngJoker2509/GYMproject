@@ -1,0 +1,63 @@
+{% extends 'profile.html' %}
+
+{%block content%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  </head>
+  <body>
+   
+    <form action="{% url 'profile:addsup' id %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="gymUser">Gym User</label>
+        <select class="form-control" id="gymUser" name="gymUser">
+          <!-- populate options dynamically with gymUsers objects -->
+          <option value="gymUser_id_1">Gym User 1</option>
+          <option value="gymUser_id_2">Gym User 2</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="participantUser">Participant User</label>
+        <select class="form-control" id="participantUser" name="participantUser">
+          <!-- populate options dynamically with participants objects -->
+          <option value="participant_id_1">Participant User 1</option>
+          <option value="participant_id_2">Participant User 2</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="text" class="form-control" id="amount" name="amount">
+      </div>
+      <div class="form-group">
+        <label for="from">From</label>
+        <input type="date" class="form-control" id="from" name="from">
+      </div>
+      <div class="form-group">
+        <label for="to">To</label>
+        <input type="datetime-local" class="form-control" id="to" name="to">
+      </div>
+      <div class="form-group">
+        <label for="active">Active</label>
+        <select class="form-control" id="active" name="active">
+          <option value="0">Inactive</option>
+          <option value="1">Active</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+  {%endblock content%}

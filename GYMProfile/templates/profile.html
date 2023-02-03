@@ -9,7 +9,7 @@
   </head>
   <body>
 
-    <header>
+    <header class="header1">
       <div class="logo">
         <img src="{% static 'images/logotwo.png' %}" alt="Image">
       </div>
@@ -22,13 +22,13 @@
     <div class="headerr">
       <nav>
         <ul>
-          <li><a href="{% url '' %}">About Us</a></li>
-          <li><a href="{% url 'showlessons' %}">Our Lessons</a></li>
-          <li><a href="{% url 'showparticipants' %}">All Participants</a></li>
-          <li><a href="{% url 'pricing' %}">Packages and Pricing</a></li>
-          <li><a href="{% url 'addparticipant' %}">Add participants</a></li>
-          <li><a href="{% url 'addemployee' %}">Add employee</a></li>
-          <li><a href="{% url 'showemployee' %}">Show employee</a></li>
+          <li><a href="{% url 'profile:' %}">About Us</a></li>
+          <li><a href="{% url 'profile:showlessons' %}">Our Lessons</a></li>
+          <li><a href="{% url 'profile:showparticipants' %}">All Participants</a></li>
+          <li><a href="{% url 'profile:pricing' %}">Packages and Pricing</a></li>
+          <li><a href="{% url 'profile:addparticipants' %}">Add participants</a></li>
+          <li><a href="{% url 'profile:addsup' %}">Add employee</a></li>
+          <li><a href="{% url 'profile:showemployee' %}">Show employee</a></li>
         </ul>
       </nav>
     </div>
