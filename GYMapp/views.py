@@ -15,21 +15,23 @@ def base(request):
 def register(request):
     if request.method == "POST":
         errors = gymUsers.objects.basic_validtor(request.POST)
-        if len(errors) > 0 :
+        if len(errors) > 0:
             for key, value in errors.items():
-                print(key,value)
-                messages.error(request, value,extra_tags=key)
+                print(key, value)
+                messages.error(request, value, extra_tags=key)
             return redirect('/')
         Register(request)
     return redirect('/login')
 
+
 def login(request):
     if request.method == "POST":
         if Login(request):
-            return redirect('/hola')
+            return redirect('/dashboard')
         else:
             return redirect('/login')
-    return render(request,'login.html')
+    return render(request, 'login.html')
+
 
 def clear(request):
     del request.session['LoginAuth']
@@ -43,7 +45,7 @@ def dashboard(request):
     now = datetime.now()
     today = now.date()
     print(today)
-    id=int(request.session['userid'])
+    id = int(request.session['userid'])
     # id = 2  # gymid
     if (Subscription.objects.filter(_to__gte=today, gymUser=id).exists()):
         list = Subscription.objects.filter(_to__gte=today, gymUser=id)
@@ -56,21 +58,23 @@ def dashboard(request):
 
 def add_participants(request):
     if request.method == 'POST':
-        gym_id=request.session['userid']
-        participants.add_participants(request,gym_id)
+        gym_id = request.session['userid']
+        participants.add_participants(request, gym_id)
         return redirect('/participants')
-    else :
-        return render(request,'add_participants.html')
+    else:
+        return render(request, 'add_participants.html')
+
 
 def call_about(request):
 
-    return render(request,"about.html")
+    return render(request, "about.html")
+
 
 def call_pricing(request):
 
-    return render(request,"pricing.html")
+    return render(request, "pricing.html")
+
 
 def call_contact(request):
 
-    return render(request,"contact.html")
-
+    return render(request, "contact.html")
