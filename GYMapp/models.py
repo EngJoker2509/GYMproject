@@ -77,6 +77,9 @@ class participants(models.Model):
         participants.objects.create(participantName=participantName, sex=sex, age=age, email=email,
                                     legalNumber=legalNumber, phoneNumber=phoneNumber, midicalHistory=midicalHistory, gymUser=obj_id)
 
+    def allParticipants(gymId):
+        return participants.objects.filter(gymUser=gymId).order_by('-id')
+
 
 class Subscription(models.Model):
     gymUser = models.ForeignKey(
