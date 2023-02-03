@@ -1,0 +1,88 @@
+{%extends 'C:\Users\ahmad\GYMproject\GYMProfile\templates\profile.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .form-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+        width: 80%;
+      }
+      label,
+      input,
+      textarea,
+      select {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid gray;
+        border-radius: 5px;
+        margin-top: 0.5rem;
+      }
+      button[type="submit"] {
+        width: 100%;
+        padding: 0.5rem;
+        background-color: dodgerblue;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        margin-top: 1rem;
+        cursor: pointer;
+      }
+      @media (max-width: 600px) {
+        .form-group {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Gym User Form</h1>
+      <form>
+        <div class="form-group">
+          <label for="participantName">Participant Name</label>
+          <input type="text" id="participantName" placeholder="Enter participant name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input type="text" id="phoneNumber" placeholder="Enter phone number">
+        </div>
+        <div class="form-group">
+          <label for="legalNumber">Legal Number</label>
+          <input type="text" id="legalNumber" placeholder="Enter legal number">
+        </div>
+        <div class="form-group">
+          <label for="medicalHistory">Medical History</label>
+          <textarea id="medicalHistory" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="sex">Sex</label>
+          <select id="sex">
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
+
+
+  {%endblock content%}
