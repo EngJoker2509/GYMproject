@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}"> 
+    <title>My Web Page</title>
+  </head>
+  <body>
+
+    <header>
+      <div class="logo">
+        <img src="{% static 'images/logotwo.png' %}" alt="Image">
+      </div>
+    </header>
+    
+   
+    
+
+
+    <div class="headerr">
+      <nav>
+        <ul>
+          <li><a href="{% url '' %}">About Us</a></li>
+          <li><a href="{% url 'showlessons' %}">Our Lessons</a></li>
+          <li><a href="{% url 'showparticipants' %}">All Participants</a></li>
+          <li><a href="{% url 'pricing' %}">Packages and Pricing</a></li>
+          <li><a href="{% url 'addparticipant' %}">Add participants</a></li>
+          <li><a href="{% url 'addemployee' %}">Add employee</a></li>
+          <li><a href="{% url 'showemployee' %}">Show employee</a></li>
+        </ul>
+      </nav>
+    </div>
+    <main>
+      {%block content%}
+      {%endblock content%}
+    </main>
+    
+  </body>
+  </body>
+  <!-- Remove the container if you want to extend the Footer to full width. -->
+<div class="container my-5">
+
+  <footer class="bg-dark text-center text-white">
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <!-- Facebook -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-facebook-f"></i
+      ></a>
+
+      <!-- Twitter -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+        ><i class="fab fa-twitter"></i
+      ></a>
+
+      <!-- Google -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+
+      <!-- Instagram -->
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+
+      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+    </section>
+  </div>
+ 
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2020 Copyright:
+    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+
+</footer>
+  
+</div>
+
+</html>
