@@ -1,0 +1,116 @@
+{%extends 'C:\Users\ahmad\GYMproject\GYMProfile\templates\profile.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+      .header {
+        background-color: #00b0ff;
+        padding: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+      
+      .header h1 {
+        font-size: 36px;
+        font-weight: bold;
+      }
+      
+      table {
+        width: 100%;
+        margin-top: 40px;
+        text-align: center;
+      }
+      
+      th {
+        background-color: #00b0ff;
+        color: white;
+        padding: 20px;
+      }
+      
+      td {
+        padding: 20px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: lightgray;
+      }
+    </style>
+    <title>Gym Class Schedule</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Gym Class Schedule</h1>
+    </div>
+    <div class="container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Lesson</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Teacher</th>
+            <th>Period</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Yoga</td>
+            <td>9:00 AM</td>
+            <td>10:00 AM</td>
+            <td>Jane Doe</td>
+            <td>Monday-Wednesday-Friday</td>
+          </tr>
+          <tr>
+            <td>Spinning</td>
+            <td>5:30 PM</td>
+            <td>6:30 PM</td>
+            <td>Jane Smith</td>
+            <td>Monday-Wednesday-Friday</td>
+          </tr>
+          <tr>
+            <td>Spinning</td>
+            <td>5:30 PM</td>
+            <td>6:30 PM</td>
+            <td>Jane Smith</td>
+            <td>Monday-Wednesday-Friday</td>
+          </tr>
+          <tr>
+            <td>Spinning</td>
+            <td>5:30 PM</td>
+            <td>6:30 PM</td>
+            <td>Jane Smith</td>
+            <td>Monday-Wednesday-Friday</td>
+          </tr>
+          <tr>
+            <td>Spinning</td>
+            <td>5:30 PM</td>
+            <td>6:30 PM</td>
+            <td>Jane Smith</td>
+            <td>Monday-Wednesday-Friday</td>
+          </tr>
+          <tr>
+            <td>Pilates</td>
+            <td>10:15 AM</td>
+            <td>11:15 AM</td>
+            <td>John Doe</td>
+            <td>Tuesday-Thursday</td>
+          </tr>
+          <tr>
+            <td>Spinning</td>
+            <td>5:30 PM</td>
+            <td>6:30 PM</td>
+            <td>Jane Smith</td>
+            <td>Monday-Wednesday-Friday</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
+{%endblock content%}

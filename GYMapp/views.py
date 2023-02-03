@@ -18,7 +18,7 @@ def register(request):
         if len(errors) > 0 :
             for key, value in errors.items():
                 print(key,value)
-                messages.error(request, value)
+                messages.error(request, value, extra_tags=key)
             return redirect('/')
         Register(request)
     return redirect('/login')
@@ -45,9 +45,9 @@ def dashboard(request):
     print(today)
     id=int(request.session['userid'])
     # id = 2  # gymid
-    if (subScriptions.objects.filter(_to__gte=today, gymUser=id).exists()):
-        list = subScriptions.objects.filter(_to__gte=today, gymUser=id)
-        # print(subScriptions.objects.filter(_to__gte=today,gymUser=id)[0].participantUser.participantName)
+    if (Subscription.objects.filter(_to__gte=today, gymUser=id).exists()):
+        list = Subscription.objects.filter(_to__gte=today, gymUser=id)
+        # print(Subscription.objects.filter(_to__gte=today,gymUser=id)[0].participantUser.participantName)
         for user_in_gym in list:
             print(user_in_gym.participantUser.participantName)
     # return render(request,'dashboard.html',context=context)
@@ -61,3 +61,16 @@ def add_participants(request):
         return redirect('/participants')
     else :
         return render(request,'add_participants.html')
+
+def call_about(request):
+
+    return render(request,"about.html")
+
+def call_pricing(request):
+
+    return render(request,"pricing.html")
+
+def call_contact(request):
+
+    return render(request,"contact.html")
+
