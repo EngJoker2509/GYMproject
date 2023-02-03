@@ -13,7 +13,8 @@
   </head>
   <body>
    
-    <form action="" method="post">
+    <form action="{% url 'profile:addparticipants' %}" method="post">
+      {% csrf_token %}
       <div class="form-group">
         <label for="participantName">Participant Name</label>
         <input type="text" class="form-control" id="participantName" name="participantName">

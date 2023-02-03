@@ -14,7 +14,8 @@
   </head>
   <body>
    
-    <form action="" method="post">
+    <form action="{% url 'profile:addsup' id %}" method="post">
+      {% csrf_token %}
       <div class="form-group">
         <label for="gymUser">Gym User</label>
         <select class="form-control" id="gymUser" name="gymUser">

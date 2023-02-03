@@ -58,7 +58,7 @@ def dashboard(request):
 
 def add_participants(request):
     if request.method == 'POST':
-        gym_id = request.session['userid']
+        gym_id = int(request.session['userid'])
         participants.add_participants(request, gym_id)
         return redirect('/participants')
     else:
