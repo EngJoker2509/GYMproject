@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    {% load static %}
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="{% static 'css/profile.css' %}"> 
-    <title>My Web Page</title>
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+  <title>GYM Profile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
 
-    <header class="header1">
-      <div class="logo">
-        <img src="{% static 'images/logotwo.png' %}" alt="Image">
-      </div>
-    </header>
-    
-   
-    
-
-
-    <div class="headerr">
-      <nav>
-        <ul>
-          <li><a href="{% url 'profile:' %}">About Us</a></li>
-          <li><a href="{% url 'profile:showlessons' %}">Our Lessons</a></li>
-          <li><a href="{% url 'profile:showparticipants' %}">All Participants</a></li>
-          <li><a href="{% url 'profile:pricing' %}">Packages and Pricing</a></li>
-          <li><a href="{% url 'profile:addparticipants' %}">Add participants</a></li>
-          <li><a href="{% url 'profile:addsup' %}">Add employee</a></li>
-          <li><a href="{% url 'profile:showemployee' %}">Show employee</a></li>
-        </ul>
-      </nav>
-    </div>
-    <main>
-      {%block content%}
-      {%endblock content%}
-    </main>
-    
-  </body>
-  </body>
-  <!-- Remove the container if you want to extend the Footer to full width. -->
+<body>
+  <header class="header1">
+    <h1>Welcome, {{ request.session.username }}!</h1>
+  </header>
+  <div class="headerr">
+    <nav>
+      <ul>
+        <li><a href="{% url 'profile:' %}">About Us</a></li>
+        <li><a href="{% url 'profile:showlessons' %}">Our Lessons</a></li>
+        <li><a href="{% url 'profile:showparticipants' %}">All Participants</a></li>
+        <li><a href="{% url 'profile:pricing' %}">Packages and Pricing</a></li>
+        <li><a href="{% url 'profile:addparticipants' %}">Add participants</a></li>
+        <li><a href="{% url 'profile:addsup' %}">Add employee</a></li>
+        <li><a href="{% url 'profile:showemployee' %}">Show employee</a></li>
+        <li><a href="{% url 'profile:signout' %}">Sign out</a></li>
+      </ul>
+    </nav>
+  </div>
+  <main>
+    {%block content%}
+    {%endblock content%}
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+</body>
+<!-- Remove the container if you want to extend the Footer to full width. -->
 <div class="container my-5">
 
   <footer class="bg-dark text-center text-white">
-  <!-- Grid container -->
-  <div class="container p-4 pb-0">
-    <!-- Section: Social media -->
-    <section class="mb-4">
-      <!-- Facebook -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-facebook-f"></i
-      ></a>
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: Social media -->
+      <section class="mb-4">
+        <!-- Facebook -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
 
-      <!-- Twitter -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-        ><i class="fab fa-twitter"></i
-      ></a>
+        <!-- Twitter -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
 
-      <!-- Google -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
+        <!-- Google -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-google"></i></a>
 
-      <!-- Instagram -->
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+        <!-- Instagram -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
 
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-linkedin-in"></i></a>
 
-      <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
-    </section>
-  </div>
- 
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2020 Copyright:
-    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-  </div>
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-github"></i></a>
+      </section>
+    </div>
 
-</footer>
-  
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2023 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/">GYMANAGER.com</a>
+    </div>
+
+  </footer>
+
 </div>
 
 </html>

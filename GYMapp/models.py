@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from datetime import datetime, timedelta
 import bcrypt
 import re
 
@@ -65,17 +65,27 @@ class participants(models.Model):
     gymUser = models.ForeignKey(
         gymUsers, related_name='gymUser_par_id', on_delete=models.CASCADE)
 
-    def add_participants(request, id):
-        participantName = request.POST['participantName']
-        sex = request.POST['sex']
-        age = request.POST['age']
-        email = request.POST['email']
-        legalNumber = request.POST['legalNumber']
-        phoneNumber = request.POST['phoneNumber']
-        midicalHistory = request.POST['medicalHistory']
+    def add_participants(postData, id):
+        participantName = postData['participantName']
+        sex = postData['sex']
+        age = postData['age']
+        email = postData['email']
+        legalNumber = postData['legalNumber']
+        phoneNumber = postData['phoneNumber']
+        midicalHistory = postData['medicalHistory']
+
         obj_id = gymUsers.objects.get(id=id)
-        participants.objects.create(participantName=participantName, sex=sex, age=age, email=email,
-                                    legalNumber=legalNumber, phoneNumber=phoneNumber, midicalHistory=midicalHistory, gymUser=obj_id)
+        newparticipant=participants.objects.create(participantName=participantName, sex=sex, age=age, email=email,
+        legalNumber=legalNumber, phoneNumber=phoneNumber, midicalHistory=midicalHistory, gymUser=obj_id)
+        par_obj_id=newparticipant.id
+        print(par_obj_id)
+        gym_obj_id=obj_id.id
+        print(gym_obj_id)
+        amount=postData['amount']
+        now = datetime.now()
+        today = now.date()
+        _to = today+timedelta(days=30)
+        Subscription.add_subscription(amount, gym_obj_id, par_obj_id,_to)
 
     def allParticipants(gymId):
         return participants.objects.filter(gymUser=gymId).order_by('-id')
@@ -91,13 +101,11 @@ class Subscription(models.Model):
     _to = models.DateTimeField(null=True)
     active = models.IntegerField(default=0, null=False)
 
-    def add_subscription(request, gym_obj_id, par_obj_id, _to):
-        gym_obj_id = gymUsers.objects.get(id=gym_obj_id)
-        par_obj_id = participants.objects.get(id=par_obj_id)
-        amount = request.POST['amount']
-        Subscription.objects.create(
-            gymUser=gym_obj_id, participantUser=par_obj_id, amount=amount, _to=_to)
-
+    def add_subscription(amount, gym_obj_id, par_obj_id, _to):
+        gym= gymUsers.objects.get(id=gym_obj_id)
+        participant= participants.objects.get(id=par_obj_id)
+        amount = amount
+        Subscription.objects.create(gymUser=gym, participantUser=participant, amount=amount, _to=_to)
 
 class Employee(models.Model):
     name = models.CharField(max_length=45)

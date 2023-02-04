@@ -69,9 +69,9 @@ def showparticipants(request):
 def addparticipants(request):
     if request.method == 'POST':
         gym_id = request.session['userid']
-        participants.add_participants(request, gym_id)
-        _part = participants.objects.last()
-        return redirect(f'/dashboard/addsup/{_part.id}')
+        participants.add_participants(request.POST, gym_id)
+        print("added successfully")
+        return redirect('/dashboard/showparticipants')
     else:
         return render(request, 'addparticipant.html')
 
@@ -111,3 +111,12 @@ def showmhisto(request, id):
         "user": participant,
     }
     return render(request, "showmhisto.html", context)
+
+def signout_user(request):
+
+    if not "userid"  in request.session:
+        return redirect('/')
+    del request.session['userid']
+    del request.session['username']
+    
+    return redirect("/")
