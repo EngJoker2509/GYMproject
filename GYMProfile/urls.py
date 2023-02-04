@@ -14,5 +14,5 @@ urlpatterns = [
     path('addsup/<int:id>', views.addsup, name='addsup'),
     path('showemployee', views.showemployee, name='showemployee'),
     path('showmhisto/<int:id>', views.showmhisto, name='showmhisto'),
-    path('search', views.search, name='search'),
+    path('signout', views.signout_user, name='signout'),
 ]
