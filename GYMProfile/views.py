@@ -10,11 +10,11 @@ def index(request):
     return render(request, "aboutus.html")
 
 
-def showlessons(request):
+def show_lessons(request):
     return render(request, "lessons.html")
 
 
-def showparticipants(request):
+def show_participants(request):
     id = int(request.session['userid'])
     now = datetime.now()
     today = now.date()
@@ -66,45 +66,39 @@ def showparticipants(request):
     return render(request, 'showparticipants.html', context=context)
 
 
-def addparticipants(request):
+def add_participants(request):
     if request.method == 'POST':
         gym_id = request.session['userid']
         participants.add_participants(request.POST, gym_id)
-        print("added successfully")
         return redirect('/dashboard/showparticipants')
     else:
         return render(request, 'addparticipant.html')
+    
+def add_employee(request):
+    if request.method == 'POST':
+        gym_id = request.session['userid']
+        Employee.add_employee(request.POST, gym_id)
+        print("added successfully")
+        return redirect('/dashboard/showemployee')
+    else:
+        return render(request, 'addemployee.html')
 
 
 def pricing(request):
     return render(request, "pricing.html")
 
 
-# def addparticipant(request):
-#     return render(request, "addparticipant.html")
+def show_employee(request):
+    id= request.session["userid"]
+    gym=gymUsers.objects.get(id=id)
+    context = {
+        "gym": gym,
+    }
+
+    return render(request, "showemployee.html",context)
 
 
-def addsup(request, id):
-    if request.method == 'POST':
-        now = datetime.now()
-        today = now.date()
-        gym_id = request.session['userid']
-        par_id = int(id)
-        _to = today+timedelta(days=30)
-        Subscription.add_subscription(request, gym_id, par_id, _to)
-        return redirect('/dashboard/showparticipants')
-    else:
-        context = {
-            'id': id
-        }
-        return render(request, 'addsup.html', context=context)
-
-
-def showemployee(request):
-    return render(request, "showemployee.html")
-
-
-def showmhisto(request, id):
+def show_mhisto(request, id):
     participant = participants.objects.get(id=id)
 
     context = {

@@ -111,14 +111,22 @@ class Employee(models.Model):
     name = models.CharField(max_length=45)
     employment_id = models.CharField(max_length=45)
     title = models.CharField(max_length=255)
+    phonenumber = models.CharField(max_length=10, null=True)
     gym = models.ForeignKey(
         gymUsers, related_name="employees", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def add_employee(request):
-        pass
+    def add_employee(postData,gym_id):
+        name = postData['employeename']
+        employment_id=postData['idnumber']
+        title = postData['title']
+        phonenumber = postData['phonenumber']
+        gym = gymUsers.objects.get(id=gym_id)
+        new_employee=Employee.objects.create(name=name,employment_id=employment_id,title=title,
+        phonenumber=phonenumber, gym=gym)
 
+        return new_employee
 
 def Register(request):
     name = request.POST['clubname']
