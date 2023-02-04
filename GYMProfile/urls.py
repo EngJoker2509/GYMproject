@@ -5,14 +5,12 @@ app_name = 'profile'
 
 urlpatterns = [
     path('', views.index, name=''),
-    path('showparticipants', views.showparticipants, name='showparticipants'),
-    path('addparticipants', views.addparticipants, name='addparticipants'),
-    path('showlessons', views.showlessons, name='showlessons'),
-    path('pricing', views.pricing, name='pricing'),
-    # path('addparticipant', views.addparticipant,name='addparticipant'),
-    path('addsup', views.addsup, name='addsup'),
-    path('addsup/<int:id>', views.addsup, name='addsup'),
-    path('showemployee', views.showemployee, name='showemployee'),
-    path('showmhisto/<int:id>', views.showmhisto, name='showmhisto'),
+    path('showparticipants', views.show_participants, name='showparticipants'),
+    path('addparticipants', views.add_participants, name='addparticipants'),
+    path('addemployee', views.add_employee, name='addemployee'),
+    path('showlessons', views.show_lessons, name='showlessons'),
+    path('packages', views.pricing, name='pricing'),
+    path('showemployee', views.show_employee, name='showemployee'),
+    path('showmhisto/<int:id>', views.show_mhisto, name='showmhisto'),
     path('signout', views.signout_user, name='signout'),
 ]

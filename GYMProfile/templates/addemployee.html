@@ -1,0 +1,34 @@
+{% extends 'profile.html' %}
+
+{% block content %}
+<center>
+  <div class="container mt-2 participant-card py-5 h-100">
+    <h1 class="mb-5">Add Employee</h1>
+    <form action="{% url 'profile:addemployee' %}" method="post">
+      {% csrf_token %}
+      <div class="form-outline mb-2 text-start">
+        <label for="participantName" class="col-form-label">Name</label>
+        <input type="text" class="form-control w-25" id="participantName" name="employeename">
+      </div>
+      <div class="form-outline mb-2 text-start">
+        <label for="title">Title</label>
+        <input type="text" class="form-control w-25" id="title" name="title">
+      </div>
+      <div class="form-outline mb-2 text-start">
+        <label for="legalNumber">ID Number</label>
+        <input type="text" class="form-control w-25" id="legalNumber" name="idnumber">
+      </div>
+      <div class="form-outline mb-2 text-start">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" class="form-control w-25" id="phoneNumber" name="phonenumber">
+      </div>
+      <button type="submit" class="btn btn-info mt-3">Add Employee</button>
+    </form>
+
+  </div>
+
+</center>
+
+
+
+{% endblock %}
