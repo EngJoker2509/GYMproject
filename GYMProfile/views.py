@@ -25,12 +25,13 @@ def show_participants(request):
     now = datetime.now()
     today = now.date()
     print(today)
+    Subscription.update_active(today,id)
     if request.method == 'POST':
         name = str(request.POST['search'])
         if len(name) == 0:
-            if (Subscription.objects.filter(_to__gte=today, gymUser=id).exists()):
-                list = Subscription.objects.filter(_to__gte=today, gymUser=id)
-                # print(Subscription.objects.filter(_to__gte=today,gymUser=id)[0].participantUser.participantName)
+            if (Subscription.objects.filter(gymUser=id).exists()):
+                list = Subscription.objects.filter(gymUser=id)
+                # print(Subscription.objects.filter(to_date__gte=today,gymUser=id)[0].participantUser.participantName)
                 # for user_in_gym in list:
                 #     print(user_in_gym.participantUser.participantName)
                 context = {
@@ -41,9 +42,8 @@ def show_participants(request):
                     'all_active_part': ''
                 }
         else:
-            if (Subscription.objects.filter(_to__gte=today, gymUser=id, participantUser__participantName__startswith=name).exists()):
-                list = Subscription.objects.filter(
-                    _to__gte=today, gymUser=id, participantUser__participantName__startswith=name)
+            if (Subscription.objects.filter(gymUser=id, participantUser__participantName__startswith=name).exists()):
+                list = Subscription.objects.filter(gymUser=id, participantUser__participantName__startswith=name)
                 context = {
                     'all_active_part': list
                 }
@@ -52,9 +52,9 @@ def show_participants(request):
                     'all_active_part': ''
                 }
     else:
-        if (Subscription.objects.filter(_to__gte=today, gymUser=id).exists()):
-            list = Subscription.objects.filter(_to__gte=today, gymUser=id)
-            # print(Subscription.objects.filter(_to__gte=today,gymUser=id)[0].participantUser.participantName)
+        if (Subscription.objects.filter(gymUser=id).exists()):
+            list = Subscription.objects.filter(gymUser=id)
+            # print(Subscription.objects.filter(to_date__gte=today,gymUser=id)[0].participantUser.participantName)
             # for user_in_gym in list:
             #     print(user_in_gym.participantUser.participantName)
             context = {
@@ -156,11 +156,18 @@ def signout_user(request):
     del request.session['username']
     return redirect("/")
 
+def delete_employee(request,id):
+    if not "userid" in request.session:
+        return redirect('/')
+    Employee.delete_employee(id)
+
+    return redirect("/dashboard/showemployee")
 
 def userprofile(request,id):
     context={
         'newpartis':participants.objects.get(id=id)
     }
-    
-    
+
+
     return render(request,"userprofile.html",context)
+    

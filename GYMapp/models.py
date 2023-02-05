@@ -97,8 +97,8 @@ class Subscription(models.Model):
     participantUser = models.ForeignKey(
         participants, related_name='participantUser_id', on_delete=models.CASCADE)
     amount = models.IntegerField()
-    _from = models.DateField(auto_now_add=True)
-    _to = models.DateTimeField(null=True)
+    from_date = models.DateField(auto_now_add=True)
+    to_date = models.DateTimeField(null=True)
     active = models.IntegerField(default=0, null=False)
 
     def add_subscription(amount, gym_obj_id, par_obj_id, _to):
@@ -106,8 +106,16 @@ class Subscription(models.Model):
         participant = participants.objects.get(id=par_obj_id)
         amount = amount
         Subscription.objects.create(
-            gymUser=gym, participantUser=participant, amount=amount, _to=_to)
+            gymUser=gym, participantUser=participant, amount=amount, to_date=_to)
 
+    def update_active(today,id):
+        if(Subscription.objects.exclude(to_date__gte=today).filter(gymUser=id).exists()):
+            _non_active = Subscription.objects.exclude(to_date__gte=today).filter(gymUser=id)
+            for non_active in _non_active:
+                non_active.active = 1 
+                non_active.save()
+        
+        return 
 
 class Employee(models.Model):
     name = models.CharField(max_length=45)
@@ -126,9 +134,13 @@ class Employee(models.Model):
         phonenumber = postData['phonenumber']
         gym = gymUsers.objects.get(id=gym_id)
         new_employee = Employee.objects.create(name=name, employment_id=employment_id, title=title,
-                                               phonenumber=phonenumber, gym=gym)
+        phonenumber=phonenumber, gym=gym)
 
         return new_employee
+    
+    def delete_employee(id):
+        employee=Employee.objects.get(id=id)
+        employee.delete()
 
 
 def Register(request):

@@ -16,6 +16,70 @@
     <thead class="bg-light">
       <tr>
         <th>Name</th>
+        <th>Last Subscription</th>
+        <th>Valid To</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for participant in all_active_part %}
+      <tr>
+        <td>
+          <div class="d-flex align-items-center">
+            <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px"
+              class="rounded-circle" />
+            <div class="ms-3">
+              <a href="{% url 'profile:userprofile' participant.participantUser.id %}">
+              <p class="fw-bold mb-1">{{ participant.participantUser.participantName }}</p></a>
+              <p class="text-muted mb-0">{{ participant.participantUser.email }}</p>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p class="fw-normal mb-1">{{ participant.participantUser.participantUser_id.last.amount }} ILS</p>
+        </td>
+        <td>{{ participant.participantUser.participantUser_id.last.to_date|date:'d-m-Y' }}</td>
+        {% if participant.active == 1 %}
+        <td>
+          <span class="badge rounded-pill d-inline  badge-danger">Non-Active</span>
+        </td>
+        <td>
+          <a href="#" class="btn btn-outline-info ">renew</a>
+        </td>
+        {% else %}
+        <td>
+          <span class="badge badge-success">Active</span>
+        </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+
+{% endblock %}
+{% extends 'profile.html' %}
+
+{%block content%}
+<div class="container d-flex justify-content-between mt-3 mb-3">
+  <form  method="post" action="{% url 'profile:showparticipants' %}">
+    {% csrf_token %}
+    <input type="text" placeholder="Search By Name" aria-label="Search" name="search">
+    <button class="btn btn-info" type="submit">Go</button>
+  </form>
+  <a href="{% url 'profile:addparticipants' %}" class="btn btn-success ">Add new participant</a>
+</div>
+
+<div class="container">
+  <table class="table align-middle mb-0 bg-white">
+
+    <thead class="bg-light">
+      <tr>
+        <th>Name</th>
         <th>Sex</th>
         <th>Status</th>
         <th>Phone Number</th>
