@@ -27,7 +27,7 @@ def register(request):
 def login(request):
     if request.method == "POST":
         if Login(request):
-            return redirect('/dashboard')
+            return redirect('/dashboard/showparticipants')
         else:
             return redirect('/login')
     return render(request, 'login.html')
