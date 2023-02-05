@@ -76,7 +76,7 @@ class participants(models.Model):
 
         obj_id = gymUsers.objects.get(id=id)
         newparticipant = participants.objects.create(participantName=participantName, sex=sex, age=age, email=email,
-                                                     legalNumber=legalNumber, phoneNumber=phoneNumber, midicalHistory=midicalHistory, gymUser=obj_id)
+        legalNumber=legalNumber, phoneNumber=phoneNumber, midicalHistory=midicalHistory, gymUser=obj_id)
         par_obj_id = newparticipant.id
         print(par_obj_id)
         gym_obj_id = obj_id.id

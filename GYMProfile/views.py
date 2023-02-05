@@ -6,12 +6,6 @@ from GYMapp.models import *
 from django.shortcuts import render
 
 
-def index(request):
-    if not "userid" in request.session:
-        return redirect('/')
-    return render(request, "aboutus.html")
-
-
 def show_lessons(request):
     if not "userid" in request.session:
         return redirect('/')
@@ -88,12 +82,6 @@ def add_employee(request):
         return redirect('/dashboard/showemployee')
     else:
         return render(request, 'addemployee.html')
-
-
-def pricing(request):
-    if not "userid" in request.session:
-        return redirect('/')
-    return render(request, "pricing.html")
 
 
 def show_employee(request):
