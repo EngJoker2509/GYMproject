@@ -155,3 +155,12 @@ def signout_user(request):
     del request.session['userid']
     del request.session['username']
     return redirect("/")
+
+
+def userprofile(request,id):
+    context={
+        'newpartis':participants.objects.get(id=id)
+    }
+    
+    
+    return render(request,"userprofile.html",context)
