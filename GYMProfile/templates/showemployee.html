@@ -19,6 +19,7 @@
         <th>Title</th>
         <th>Phone Number</th>
         <th>Employment ID</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +38,7 @@
         <td>{{ employee.title }}</td>
         <td>{{ employee.phonenumber }}</td>
         <td>{{ employee.employment_id }}</td>
+        <td><a href="{% url 'profile:delemployee' employee.id %}" class="btn btn-danger ">Delete</a></td>
       </tr>
       {% endfor %}
     </tbody>

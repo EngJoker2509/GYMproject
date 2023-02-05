@@ -16,12 +16,10 @@
     <thead class="bg-light">
       <tr>
         <th>Name</th>
-        <th>Sex</th>
+        <th>Last Subscription</th>
+        <th>Valid To</th>
         <th>Status</th>
-        <th>Phone Number</th>
-        <th>Medical History</th>
-        <th>ID Number</th>
-        <th>Age</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -33,23 +31,28 @@
             <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px"
               class="rounded-circle" />
             <div class="ms-3">
-              <p class="fw-bold mb-1">{{ participant.participantUser.participantName }}</p>
+              <a href="{% url 'profile:userprofile' participant.participantUser.id %}">
+              <p class="fw-bold mb-1">{{ participant.participantUser.participantName }}</p></a>
               <p class="text-muted mb-0">{{ participant.participantUser.email }}</p>
             </div>
           </div>
         </td>
         <td>
-          <p class="fw-normal mb-1">{{ participant.participantUser.sex }}</p>
+          <p class="fw-normal mb-1">{{ participant.participantUser.participantUser_id.last.amount }} ILS</p>
         </td>
+        <td>{{ participant.participantUser.participantUser_id.last.to_date|date:'d-m-Y' }}</td>
+        {% if participant.active == 1 %}
         <td>
           <span class="badge rounded-pill d-inline  badge-danger">Non-Active</span>
         </td>
-        <td>{{ participant.participantUser.phoneNumber }}</td>
         <td>
-          <a href="{% url 'profile:showmhisto' participant.participantUser.id %}">Show</a>
+          <a href="#" class="btn btn-outline-info ">renew</a>
         </td>
-        <td>{{ participant.participantUser.legalNumber }}</td>
-        <td>{{ participant.participantUser.age }}</td>
+        {% else %}
+        <td>
+          <span class="badge badge-success">Active</span>
+        </td>
+        {% endif %}
       </tr>
       {% endfor %}
     </tbody>
