@@ -33,48 +33,43 @@ def login(request):
     return render(request, 'login.html')
 
 
-def clear(request):
-    del request.session['LoginAuth']
-    del request.session['userid']
-    return redirect('/')
+# def clear(request):
+#     del request.session['LoginAuth']
+#     del request.session['userid']
+#     return redirect('/')
 
 
-def dashboard(request):
-    if request.method == 'POST':
-        pass
-    now = datetime.now()
-    today = now.date()
-    print(today)
-    id = int(request.session['userid'])
-    # id = 2  # gymid
-    if (Subscription.objects.filter(_to__gte=today, gymUser=id).exists()):
-        list = Subscription.objects.filter(_to__gte=today, gymUser=id)
-        # print(Subscription.objects.filter(_to__gte=today,gymUser=id)[0].participantUser.participantName)
-        for user_in_gym in list:
-            print(user_in_gym.participantUser.participantName)
-    # return render(request,'dashboard.html',context=context)
-    return HttpResponse('Scuess dashboard')
+# def dashboard(request):
+#     if request.method == 'POST':
+#         pass
+#     now = datetime.now()
+#     today = now.date()
+#     print(today)
+#     id = int(request.session['userid'])
+#     # id = 2  # gymid
+#     if (Subscription.objects.filter(_to__gte=today, gymUser=id).exists()):
+#         list = Subscription.objects.filter(_to__gte=today, gymUser=id)
+#         # print(Subscription.objects.filter(_to__gte=today,gymUser=id)[0].participantUser.participantName)
+#         for user_in_gym in list:
+#             print(user_in_gym.participantUser.participantName)
+#     # return render(request,'dashboard.html',context=context)
+#     return HttpResponse('Scuess dashboard')
 
 
-def add_participants(request):
-    if request.method == 'POST':
-        gym_id = int(request.session['userid'])
-        participants.add_participants(request, gym_id)
-        return redirect('/participants')
-    else:
-        return render(request, 'add_participants.html')
+# def add_participants(request):
+#     if request.method == 'POST':
+#         gym_id = int(request.session['userid'])
+#         participants.add_participants(request, gym_id)
+#         return redirect('/participants')
+#     else:
+#         return render(request, 'add_participants.html')
 
 
 def call_about(request):
-
     return render(request, "about.html")
 
-
 def call_pricing(request):
-
     return render(request, "pricing.html")
 
-
 def call_contact(request):
-
     return render(request, "contact.html")

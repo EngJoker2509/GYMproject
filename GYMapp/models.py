@@ -75,17 +75,17 @@ class participants(models.Model):
         midicalHistory = postData['medicalHistory']
 
         obj_id = gymUsers.objects.get(id=id)
-        newparticipant=participants.objects.create(participantName=participantName, sex=sex, age=age, email=email,
-        legalNumber=legalNumber, phoneNumber=phoneNumber, midicalHistory=midicalHistory, gymUser=obj_id)
-        par_obj_id=newparticipant.id
+        newparticipant = participants.objects.create(participantName=participantName, sex=sex, age=age, email=email,
+                                                     legalNumber=legalNumber, phoneNumber=phoneNumber, midicalHistory=midicalHistory, gymUser=obj_id)
+        par_obj_id = newparticipant.id
         print(par_obj_id)
-        gym_obj_id=obj_id.id
+        gym_obj_id = obj_id.id
         print(gym_obj_id)
-        amount=postData['amount']
+        amount = postData['amount']
         now = datetime.now()
         today = now.date()
         _to = today+timedelta(days=30)
-        Subscription.add_subscription(amount, gym_obj_id, par_obj_id,_to)
+        Subscription.add_subscription(amount, gym_obj_id, par_obj_id, _to)
 
     def allParticipants(gymId):
         return participants.objects.filter(gymUser=gymId).order_by('-id')
@@ -102,10 +102,12 @@ class Subscription(models.Model):
     active = models.IntegerField(default=0, null=False)
 
     def add_subscription(amount, gym_obj_id, par_obj_id, _to):
-        gym= gymUsers.objects.get(id=gym_obj_id)
-        participant= participants.objects.get(id=par_obj_id)
+        gym = gymUsers.objects.get(id=gym_obj_id)
+        participant = participants.objects.get(id=par_obj_id)
         amount = amount
-        Subscription.objects.create(gymUser=gym, participantUser=participant, amount=amount, _to=_to)
+        Subscription.objects.create(
+            gymUser=gym, participantUser=participant, amount=amount, _to=_to)
+
 
 class Employee(models.Model):
     name = models.CharField(max_length=45)
@@ -117,16 +119,17 @@ class Employee(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def add_employee(postData,gym_id):
+    def add_employee(postData, gym_id):
         name = postData['employeename']
-        employment_id=postData['idnumber']
+        employment_id = postData['idnumber']
         title = postData['title']
         phonenumber = postData['phonenumber']
         gym = gymUsers.objects.get(id=gym_id)
-        new_employee=Employee.objects.create(name=name,employment_id=employment_id,title=title,
-        phonenumber=phonenumber, gym=gym)
+        new_employee = Employee.objects.create(name=name, employment_id=employment_id, title=title,
+                                               phonenumber=phonenumber, gym=gym)
 
         return new_employee
+
 
 def Register(request):
     name = request.POST['clubname']

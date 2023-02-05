@@ -23,7 +23,7 @@
     </thead>
     <tbody>
 
-      {% for employee in gym.employees.all %}
+      {% for employee in gym %}
       <tr>
         <td>
           <div class="d-flex align-items-center">
@@ -35,8 +35,8 @@
           </div>
         </td>
         <td>{{ employee.title }}</td>
-        <td>{{ employee.employment_id }}</td>
         <td>{{ employee.phonenumber }}</td>
+        <td>{{ employee.employment_id }}</td>
       </tr>
       {% endfor %}
     </tbody>
